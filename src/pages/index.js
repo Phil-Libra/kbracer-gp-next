@@ -1,5 +1,5 @@
-import { useMemo, useEffect, useState } from 'react';
-import { Outlet, useOutletContext, useLocation } from 'react-router-dom';
+import { useMemo, useState } from 'react';
+import { Outlet, useOutletContext } from 'react-router-dom';
 import { Input } from 'antd';
 import { CloseCircleTwoTone } from '@ant-design/icons';
 
@@ -38,16 +38,6 @@ const Home = () => {
     // 说明书显示状态
     const [descStatus, setDescStatus] = useState(false);
 
-    const { pathname } = useLocation();
-
-    // 切换榜单重新获取数据；不需要监听speedData, speedDataMod, totalSpeedData这三个常量的变化。
-    useEffect(() => {
-        setRankData(speedData);
-        setRankDataMod(speedDataMod);
-        setTotalData(totalSpeedData);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [pathname]);
-
     return (
         <>
             <div className={styles.main}>
@@ -61,20 +51,9 @@ const Home = () => {
                                 return reg.test(item.car);
                             });
 
-                            // 根据当前榜单来筛选数据
-                            switch (pathname) {
-                                case '/original':
-                                    setRankData(dataFilter(speedData));
-                                    break;
-                                case '/mod':
-                                    setRankDataMod(dataFilter(speedDataMod));
-                                    break;
-                                case '/total':
-                                    setTotalData(dataFilter(totalSpeedData));
-                                    break;
-                                default:
-                                    throw new Error('数据错误！');
-                            }
+                            setRankData(dataFilter(speedData));
+                            setRankDataMod(dataFilter(speedDataMod));
+                            setTotalData(dataFilter(totalSpeedData));
                         }}
                         allowClear
                     />
