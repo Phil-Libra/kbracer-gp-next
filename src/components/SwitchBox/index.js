@@ -39,7 +39,7 @@ const SwitchBox = (
                 {pagination ? '关闭分页' : '开启分页'}
             </button>
         </div>
-    )
+    );
 };
 
 export default SwitchBox;
@@ -52,4 +52,4 @@ SwitchBox.propTypes = {
     switchText2: PropTypes.string,
     handleClick: PropTypes.func,
     pagination: PropTypes.bool.isRequired
-}
+};

@@ -209,7 +209,7 @@ const Table = (
                     : <span>{text}</span>}
             />
         </ATable>
-    )
+    );
 };
 
 export default Table;
@@ -220,4 +220,4 @@ Table.propTypes = {
     pagination: PropTypes.bool,
     title: PropTypes.node,
     mod: PropTypes.bool
-}
+};
