@@ -1,0 +1,366 @@
+:global body {
+  background-image: linear-gradient(90deg, #485563, #29323c);
+}
+:global p {
+  margin: 0;
+}
+:global #root {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+@media (max-width: 767px) {
+  :global .ant-table-wrapper {
+    margin: 20px 20px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1920px) {
+  :global .ant-table-wrapper {
+    margin: 20px 50px;
+  }
+}
+@media (min-width: 1921px) {
+  :global .ant-table-wrapper {
+    margin: 50px auto;
+  }
+}
+:global .ant-table-wrapper {
+  max-width: 1820px;
+}
+:global .ant-table-thead {
+  background-image: linear-gradient(90deg, #485563, #29323c);
+}
+:global .ant-table-thead > tr > th {
+  background: none;
+  background-color: rgba(229, 229, 229, 0.3);
+  color: #fff;
+  text-align: center;
+}
+:global .ant-table-tbody > tr.ant-table-row:hover > td,
+:global .ant-table-tbody > tr > td.ant-table-cell-row-hover {
+  background: unset;
+}
+:global .ant-table.ant-table-small {
+  font-size: 13px;
+}
+:global .ant-pagination > li > a,
+:global .ant-pagination svg {
+  color: #fff;
+}
+:global .ant-pagination .ant-pagination-item-active > a {
+  color: #1890ff;
+}
+:global .ant-pagination .ant-pagination-item-ellipsis {
+  color: #fff !important;
+}
+:global .ant-btn:focus,
+:global .ant-btn:hover {
+  color: initial;
+  border-color: initial;
+}
+:global .ant-table-title {
+  background-image: linear-gradient(200deg, #2c3e50, #2980b9);
+  color: #fff;
+  font-size: 24px;
+}
+:global .ant-table-title span {
+  padding-left: 10px;
+}
+.kbracer {
+  color: #fff;
+}
+.kbracer a {
+  color: #fff;
+}
+.kbracer a:hover {
+  text-decoration: underline;
+}
+.kbracer1 {
+  background-image: linear-gradient(230deg, hsl(335, 58%, 48%), hsl(335, 47%, 60%));
+}
+.kbracer1:hover {
+  background-image: linear-gradient(230deg, hsl(335, 58%, 60%), hsl(335, 47%, 72%));
+}
+.kbracer2 {
+  background-image: linear-gradient(230deg, hsl(282, 38%, 28%), hsl(282, 27%, 56%));
+}
+.kbracer2:hover {
+  background-image: linear-gradient(230deg, hsl(282, 38%, 40%), hsl(282, 27%, 68%));
+}
+.kbracer3 {
+  background-image: linear-gradient(230deg, hsl(238, 38%, 28%), hsl(206, 53%, 56%));
+}
+.kbracer3:hover {
+  background-image: linear-gradient(230deg, hsl(238, 38%, 40%), hsl(206, 53%, 68%));
+}
+.kbracer4 {
+  background-image: linear-gradient(230deg, hsl(186, 38%, 28%), hsl(186, 27%, 56%));
+}
+.kbracer4:hover {
+  background-image: linear-gradient(230deg, hsl(186, 38%, 40%), hsl(186, 27%, 68%));
+}
+.kbracer5 {
+  background-image: linear-gradient(230deg, hsl(30, 83%, 38%), hsl(30, 49%, 56%));
+}
+.kbracer5:hover {
+  background-image: linear-gradient(230deg, hsl(30, 83%, 50%), hsl(30, 49%, 68%));
+}
+.kbracer6 {
+  background-image: linear-gradient(230deg, hsl(0, 54%, 38%), hsl(10, 49%, 56%));
+}
+.kbracer6:hover {
+  background-image: linear-gradient(230deg, hsl(0, 54%, 50%), hsl(10, 49%, 68%));
+}
+@media (max-width: 767px) {
+  .title {
+    margin: 20px 20px 0;
+    padding: 20px;
+  }
+  .switchBox {
+    margin: 0 20px;
+  }
+  .descButton {
+    margin-bottom: 20px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1920px) {
+  .title {
+    margin: 50px 50px 0;
+    padding: 30px;
+  }
+  .switchBox {
+    margin: 20px 40px;
+    padding: 0 10px;
+  }
+  .descButton {
+    margin-bottom: 50px;
+  }
+}
+@media (min-width: 1921px) {
+  .title {
+    margin: 50px auto 0;
+    padding: 30px;
+  }
+  .switchBox {
+    margin: 40px auto;
+  }
+  .descButton {
+    margin-bottom: 50px;
+  }
+}
+@media (max-width: 971px) {
+  .title {
+    flex-direction: column;
+  }
+  .title .search {
+    margin: 0 20px 20px;
+  }
+}
+@media (min-width: 972px) {
+  .title {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .title .search {
+    margin: 50px 0;
+  }
+}
+@media (max-width: 359px) {
+  .switchBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .switchBox .switchButton {
+    display: flex;
+    flex-direction: column;
+  }
+  .switchBox button {
+    margin-top: 25px;
+  }
+}
+@media (max-width: 689px) and (min-width: 360px) {
+  .switchBox {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .switchBox .switchButton {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .switchBox button {
+    margin-top: 25px;
+  }
+}
+@media (max-width: 849px) and (min-width: 690px) {
+  .switchBox {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+  }
+  .switchBox .switch1 {
+    margin-right: 100px;
+  }
+}
+@media (min-width: 850px) and (max-width: 1920px) {
+  .switchBox {
+    display: flex;
+    justify-content: space-between;
+  }
+  .switchBox .switch1 {
+    margin-right: 150px;
+  }
+}
+@media (min-width: 1921px) {
+  .switchBox {
+    display: flex;
+    justify-content: space-between;
+  }
+  .switchBox .switch1 {
+    margin-right: 150px;
+  }
+}
+@media (max-width: 832px) {
+  .footer {
+    flex-direction: column;
+    align-content: flex-start;
+    align-items: flex-start;
+  }
+  .footer .left,
+  .footer .right {
+    margin: 10px 0;
+  }
+}
+@media (min-width: 833px) {
+  .footer {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer .left,
+  .footer .right {
+    margin: 10px 10px;
+  }
+}
+.title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  align-content: center;
+  max-width: 1820px;
+  border-radius: 10px;
+  box-shadow: #333 1px 1px 10px;
+  background-image: linear-gradient(200deg, #2980b9, #2c3e50);
+  color: #fff;
+}
+.title .header {
+  text-align: center;
+}
+.title .desc {
+  display: inline-block;
+  margin: 25px;
+  color: #fff;
+  vertical-align: middle;
+  text-align: left;
+}
+.title .desc h1 {
+  margin: 0;
+  font-size: 32px;
+  color: #fff;
+}
+.title .search {
+  max-width: 250px;
+}
+.switchBox {
+  max-width: 1820px;
+}
+.switchBox .switch1,
+.switchBox .switch2,
+.switchBox .pagination {
+  width: 150px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  box-shadow: #23527c 0px -2px 0px inset;
+  background-color: #337ab7;
+  color: white;
+  line-height: 20px;
+  cursor: pointer;
+}
+.switchBox .switch1:hover,
+.switchBox .switch2:hover,
+.switchBox .pagination:hover {
+  background-color: #4405f7;
+}
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px 25px;
+  width: 100%;
+  box-shadow: #333 -10px 0px 50px;
+  background-image: linear-gradient(90deg, rgba(200, 200, 255, 0.2), rgba(255, 255, 255, 0.4));
+  font-size: 14px;
+  color: #fff;
+}
+.footer a {
+  color: #bbffff;
+}
+.footer img {
+  margin: 0 5px 0 0;
+  height: 14px;
+}
+.buttonBox {
+  text-align: center;
+}
+.buttonBox .descButton {
+  overflow: hidden;
+  width: 300px;
+  max-width: 80vw;
+  height: 80px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  box-shadow: #23527c 0px -2px 0px inset;
+  background-color: #337ab7;
+  color: white;
+  line-height: 20px;
+  cursor: pointer;
+}
+.buttonBox .descButton span {
+  font-size: 28px;
+}
+.buttonBox .descButton:hover {
+  background-color: #4405f7;
+}
+.description {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  height: 75vh;
+  max-height: 750px;
+  width: 75vw;
+  max-width: 750px;
+  background-color: #000;
+  color: #fff;
+  z-index: 3;
+}
+.description h3 {
+  margin-top: 20px;
+  font-size: 24px;
+  color: #fff;
+}
+.description h3:first-child {
+  margin-top: 0;
+}
+.description .manual {
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+}

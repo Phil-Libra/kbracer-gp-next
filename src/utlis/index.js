@@ -1,0 +1,1 @@
+export { handleData } from './handleData';

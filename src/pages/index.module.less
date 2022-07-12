@@ -1,0 +1,461 @@
+// 修改默认样式
+:global {
+    body {
+        background-image: linear-gradient(90deg, #485563, #29323c);
+    }
+
+    p {
+        margin: 0;
+    }
+
+    #root {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 100vh;
+    }
+
+
+    //表格响应式边距
+    @media (max-width:767px) {
+        .ant-table-wrapper {
+            margin: 20px 20px;
+        }
+    }
+
+    @media (min-width: 768px)and(max-width:1920px) {
+        .ant-table-wrapper {
+            margin: 20px 50px;
+        }
+    }
+
+    @media (min-width:1921px) {
+        .ant-table-wrapper {
+            margin: 50px auto;
+        }
+    }
+
+    .ant-table-wrapper {
+        max-width: 1820px;
+    }
+
+    .ant-table-thead {
+        background-image: linear-gradient(90deg, #485563, #29323c);
+
+        &>tr>th {
+            background: none;
+            background-color: rgba(229, 229, 229, 0.3);
+            color: #fff;
+            text-align: center;
+        }
+    }
+
+    .ant-table-tbody>tr.ant-table-row:hover>td,
+    .ant-table-tbody>tr>td.ant-table-cell-row-hover {
+        background: unset;
+    }
+
+    .ant-table.ant-table-small {
+        font-size: 13px;
+    }
+
+    .ant-pagination {
+
+        &>li>a,
+        svg {
+            color: #fff;
+        }
+
+        .ant-pagination-item-active>a {
+            color: #1890ff;
+        }
+
+        .ant-pagination-item-ellipsis {
+            color: #fff !important;
+        }
+    }
+
+    .ant-btn:focus,
+    .ant-btn:hover {
+        color: initial;
+        border-color: initial;
+    }
+
+    .ant-table-title {
+        background-image: linear-gradient(200deg, #2c3e50, #2980b9);
+        color: #fff;
+        font-size: 24px;
+
+        span {
+            padding-left: 10px;
+        }
+    }
+}
+
+// 表格样式
+.kbracer {
+    color: #fff;
+
+    a {
+        color: #fff;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.kbracer1 {
+    background-image: linear-gradient(230deg, hsl(335, 58%, 48%), hsl(335, 47%, 60%));
+
+    &:hover {
+        background-image: linear-gradient(230deg, hsl(335, 58%, 60%), hsl(335, 47%, 72%));
+    }
+}
+
+.kbracer2 {
+    background-image: linear-gradient(230deg, hsl(282, 38%, 28%), hsl(282, 27%, 56%));
+
+    &:hover {
+        background-image: linear-gradient(230deg, hsl(282, 38%, 40%), hsl(282, 27%, 68%));
+    }
+}
+
+.kbracer3 {
+    background-image: linear-gradient(230deg, hsl(238, 38%, 28%), hsl(206, 53%, 56%));
+
+    &:hover {
+        background-image: linear-gradient(230deg, hsl(238, 38%, 40%), hsl(206, 53%, 68%));
+    }
+}
+
+.kbracer4 {
+    background-image: linear-gradient(230deg, hsl(186, 38%, 28%), hsl(186, 27%, 56%));
+
+    &:hover {
+        background-image: linear-gradient(230deg, hsl(186, 38%, 40%), hsl(186, 27%, 68%));
+    }
+}
+
+.kbracer5 {
+    background-image: linear-gradient(230deg, hsl(30, 83%, 38%), hsl(30, 49%, 56%));
+
+    &:hover {
+        background-image: linear-gradient(230deg, hsl(30, 83%, 50%), hsl(30, 49%, 68%));
+    }
+}
+
+.kbracer6 {
+    background-image: linear-gradient(230deg, hsl(0, 54%, 38%), hsl(10, 49%, 56%));
+
+    &:hover {
+        background-image: linear-gradient(230deg, hsl(0, 54%, 50%), hsl(10, 49%, 68%));
+    }
+}
+
+// 其他样式
+
+//标题、按钮区域响应式边距
+@media (max-width:767px) {
+    .title {
+        margin: 20px 20px 0;
+        padding: 20px;
+    }
+
+    .switchBox {
+        margin: 0 20px;
+    }
+
+    .descButton {
+        margin-bottom: 20px;
+    }
+}
+
+@media (min-width: 768px)and (max-width:1920px) {
+    .title {
+        margin: 50px 50px 0;
+        padding: 30px;
+    }
+
+    .switchBox {
+        margin: 20px 40px;
+        padding: 0 10px;
+    }
+
+    .descButton {
+        margin-bottom: 50px;
+    }
+}
+
+@media (min-width: 1921px) {
+    .title {
+        margin: 50px auto 0;
+        padding: 30px;
+    }
+
+    .switchBox {
+        margin: 40px auto;
+    }
+
+    .descButton {
+        margin-bottom: 50px;
+    }
+}
+
+// 标题区域响应式布局
+@media (max-width:971px) {
+    .title {
+        flex-direction: column;
+
+        .search {
+            margin: 0 20px 20px;
+        }
+    }
+}
+
+@media (min-width: 972px) {
+    .title {
+        flex-direction: row;
+        justify-content: space-between;
+
+        .search {
+            margin: 50px 0;
+        }
+    }
+}
+
+// 按钮区域响应式布局
+@media (max-width:359px) {
+    .switchBox {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .switchButton {
+            display: flex;
+            flex-direction: column;
+        }
+
+        button {
+            margin-top: 25px;
+        }
+    }
+}
+
+@media (max-width:689px)and(min-width:360px) {
+    .switchBox {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+
+        .switchButton {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        button {
+            margin-top: 25px;
+        }
+    }
+}
+
+@media (max-width:849px)and(min-width:690px) {
+    .switchBox {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 25px;
+
+        .switch1 {
+            margin-right: 100px;
+        }
+    }
+}
+
+@media (min-width:850px)and(max-width:1920px) {
+    .switchBox {
+        display: flex;
+        justify-content: space-between;
+
+        .switch1 {
+            margin-right: 150px;
+        }
+    }
+}
+
+@media (min-width:1921px) {
+    .switchBox {
+        display: flex;
+        justify-content: space-between;
+
+        .switch1 {
+            margin-right: 150px;
+        }
+    }
+}
+
+// 底栏响应式布局
+@media (max-width:832px) {
+    .footer {
+        flex-direction: column;
+        align-content: flex-start;
+        align-items: flex-start;
+
+        .left,
+        .right {
+            margin: 10px 0;
+        }
+    }
+}
+
+@media (min-width:833px) {
+    .footer {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        .left,
+        .right {
+            margin: 10px 10px;
+        }
+    }
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: center;
+    max-width: 1820px;
+    border-radius: 10px;
+    box-shadow: #333 1px 1px 10px;
+    background-image: linear-gradient(200deg, #2980b9, #2c3e50);
+    color: #fff;
+
+    .header {
+        text-align: center;
+    }
+
+    .desc {
+        display: inline-block;
+        margin: 25px;
+        color: #fff;
+        vertical-align: middle;
+        text-align: left;
+
+        h1 {
+            margin: 0;
+            font-size: 32px;
+            color: #fff;
+        }
+    }
+
+    .search {
+        max-width: 250px;
+    }
+
+}
+
+.switchBox {
+    max-width: 1820px;
+
+    .switch1,
+    .switch2,
+    .pagination {
+        width: 150px;
+        height: 40px;
+
+        overflow: hidden;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+        box-shadow: #23527c 0px -2px 0px inset;
+        background-color: #337ab7;
+        color: white;
+        line-height: 20px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #4405f7;
+        }
+    }
+}
+
+.footer {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 25px;
+    width: 100%;
+    box-shadow: #333 -10px 0px 50px;
+    background-image: linear-gradient(90deg, rgba(200, 200, 255, 0.2), rgba(255, 255, 255, 0.4));
+    font-size: 14px;
+    color: #fff;
+
+    a {
+        color: #bbffff;
+    }
+
+    img {
+        margin: 0 5px 0 0;
+        height: 14px;
+    }
+}
+
+.buttonBox {
+    text-align: center;
+
+    .descButton {
+        overflow: hidden;
+        width: 300px;
+        max-width: 80vw;
+        height: 80px;
+        border-radius: 10px;
+        border: none;
+        outline: none;
+        box-shadow: #23527c 0px -2px 0px inset;
+        background-color: #337ab7;
+        color: white;
+        line-height: 20px;
+        cursor: pointer;
+
+        span {
+            font-size: 28px;
+        }
+
+        &:hover {
+            background-color: #4405f7;
+        }
+    }
+}
+
+.description {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    height: 75vh;
+    max-height: 750px;
+    width: 75vw;
+    max-width: 750px;
+    background-color: #000;
+    color: #fff;
+    z-index: 3;
+
+    h3 {
+        margin-top: 20px;
+        font-size: 24px;
+        color: #fff;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    .manual {
+        overflow: auto;
+        width: 100%;
+        height: 100%;
+    }
+
+}
