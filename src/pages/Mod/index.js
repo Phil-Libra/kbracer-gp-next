@@ -19,7 +19,7 @@ const Mod = () => {
     <>
       <SwitchBox
         styles={styles}
-        path_1={`${process.env.REACT_APP_URL}total`}
+        path_1={process.env.REACT_APP_URL}
         switchText1={'切换到总榜'}
         path_2={`${process.env.REACT_APP_URL}original`}
         switchText2={'切换到原厂榜'}
