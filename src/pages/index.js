@@ -79,7 +79,6 @@ const Title = (props) => (
             <img src={logo} alt="logo" />
             <div className={styles.desc}>
                 <h1>键盘车神教易车金港圈速榜</h1>
-                <p>传说中的偶像派车评人教主的真实圈速榜单</p>
                 <p>本榜单只做技术展示，日常请使用原易车金港榜单</p>
             </div>
         </div>

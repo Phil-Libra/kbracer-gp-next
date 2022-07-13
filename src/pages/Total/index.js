@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 import { useData } from '../index';
-import { BASE_URL } from '../../utlis';
 import Table from '../../components/Table';
 import SwitchBox from '../../components/SwitchBox';
 
@@ -20,9 +19,9 @@ const Total = () => {
     <>
       <SwitchBox
         styles={styles}
-        path_1={`${BASE_URL}/original`}
+        path_1={`${process.env.REACT_APP_URL}original`}
         switchText1={'切换到原厂榜'}
-        path_2={`${BASE_URL}/mod`}
+        path_2={`${process.env.REACT_APP_URL}mod`}
         switchText2={'切换到改装榜'}
         handleClick={() => setPagination(prevState => !prevState)}
         pagination={pagination}
