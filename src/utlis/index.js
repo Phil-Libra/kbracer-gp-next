@@ -1,1 +1,1 @@
-export { handleData } from './handleData';
+export { dataFormat } from './dataFormat';

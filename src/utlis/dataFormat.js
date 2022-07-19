@@ -1,5 +1,5 @@
 // 兼容原榜单数据，处理圈速数据
-export const handleData = (data, modStatus) => data
+export const dataFormat = (data, modStatus) => data
     // 排序，防止源数据顺序错误
     .sort((a, b) => a.speed * 100 - b.speed * 100)
     .map((item, index) => {

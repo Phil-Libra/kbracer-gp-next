@@ -62,17 +62,18 @@ const Table = (
             }
             onRow={(val) => {
                 return {
-                    className: val.speed < 70
-                        ? `${styles.kbracer} ${styles.kbracer1}`
-                        : val.speed < 73
-                            ? `${styles.kbracer} ${styles.kbracer2}`
-                            : val.speed < 76
-                                ? `${styles.kbracer} ${styles.kbracer3}`
-                                : val.speed < 79
-                                    ? `${styles.kbracer} ${styles.kbracer4}`
-                                    : val.speed < 82
-                                        ? `${styles.kbracer} ${styles.kbracer5}`
-                                        : `${styles.kbracer} ${styles.kbracer6}`
+                    className:
+                        val.speed < 70
+                            ? `${styles.kbracer} ${styles.kbracer1}`
+                            : val.speed < 73
+                                ? `${styles.kbracer} ${styles.kbracer2}`
+                                : val.speed < 76
+                                    ? `${styles.kbracer} ${styles.kbracer3}`
+                                    : val.speed < 79
+                                        ? `${styles.kbracer} ${styles.kbracer4}`
+                                        : val.speed < 82
+                                            ? `${styles.kbracer} ${styles.kbracer5}`
+                                            : `${styles.kbracer} ${styles.kbracer6}`
                 }
             }}
         >
@@ -140,9 +141,16 @@ const Table = (
             />
             <Column
                 title="动力总成"
-                dataIndex="Powertrain"
-                key="Powertrain"
+                dataIndex="powertrain"
+                key="powertrain"
                 width="10%"
+            />
+            <Column
+                title="驱动"
+                dataIndex="drive"
+                key="drive"
+                align="center"
+                width="5%"
             />
             <ColumnGroup title={() => '轮胎'}>
                 <Column
