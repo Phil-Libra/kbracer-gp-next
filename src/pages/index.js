@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Outlet, useOutletContext } from 'react-router-dom';
 import { Input, Select } from 'antd';
 import { CloseCircleTwoTone } from '@ant-design/icons';
@@ -17,7 +17,6 @@ import 'antd/dist/antd.min.css';
 import styles from './index.module.css';
 
 const Home = () => {
-    const { Option } = Select;
 
     const speedData = dataFormat(speed, false);
     const speedDataMod = dataFormat(speed_mod, true);
@@ -32,65 +31,29 @@ const Home = () => {
             }
         )), [speedData, speedDataMod]);
 
+    const defaultData = {
+        speed: speedData,
+        speedMod: speedDataMod,
+        total: totalSpeedData
+    };
+
     // 展示数据源state
-    const [rankData, setRankData] = useState(speedData);
-    const [rankDataMod, setRankDataMod] = useState(speedDataMod);
-    const [totalData, setTotalData] = useState(totalSpeedData);
+    const [rankData, setRankData] = useState(defaultData);
 
     // 说明书显示状态
     const [descStatus, setDescStatus] = useState(false);
-
-    // 搜索车型函数
-    const handleSearch = (e) => {
-        const dataFilter = (data) => data.filter((item) => {
-            const reg = new RegExp(e.target.value, 'i');
-            return reg.test(item.car);
-        });
-
-        setRankData(dataFilter(speedData));
-        setRankDataMod(dataFilter(speedDataMod));
-        setTotalData(dataFilter(totalSpeedData));
-    };
-
-    // 过滤车型函数
-    const handleFilter = (val) => {
-        const dataFilter = (data, key) => data.filter((item) => {
-            if (key === 'all') {
-                return item;
-            }
-
-            return item[key] === 'true';
-        });
-
-        setRankData(dataFilter(speedData, val));
-        setRankDataMod(dataFilter(speedDataMod, val));
-        setTotalData(dataFilter(totalSpeedData, val));
-    };
 
     return (
         <>
             <div className={styles.main}>
                 <Title >
-                    <Input
-                        addonBefore="搜索："
-                        placeholder="车型关键字"
-                        onChange={handleSearch}
-                        allowClear
+                    <Search
+                        setRankData={setRankData}
+                        defaultData={defaultData}
                     />
-                    <Select
-                        defaultValue="all"
-                        style={{
-                            width: 120,
-                        }}
-                        onChange={handleFilter}
-                    >
-                        <Option value="all">全部车型</Option>
-                        <Option value="suv">只看SUV</Option>
-                        <Option value="ev">只看电车</Option>
-                    </Select>
                 </Title>
 
-                <Outlet context={{ rankData, rankDataMod, totalData }} />
+                <Outlet context={rankData} />
 
                 <Description
                     descStatus={descStatus}
@@ -112,9 +75,7 @@ const Title = (props) => (
                 <p>本榜单只做技术展示，日常请使用<a href='https://phil-libra.github.io/kbracer-goldenport/'>原易车金港榜单</a></p>
             </div>
         </div>
-        <div className={styles.search}>
-            {props.children}
-        </div>
+        {props.children}
     </div>
 );
 
@@ -172,6 +133,90 @@ const Footer = () => (
         </div>
     </div>
 );
+
+const Search = (
+    {
+        setRankData,
+        defaultData
+    }
+) => {
+    const { Option } = Select;
+
+    // 数据过滤条件
+    const [filter, setFilter] = useState({
+        name: '',
+        key: 'all'
+    });
+
+    useEffect(() => {
+        const nameFilter = (data) => {
+            let tempData = {};
+            for (let k in data) {
+                tempData[k] = data[k].filter((item) => {
+                    const reg = new RegExp(filter.name, 'i');
+                    return reg.test(item.car);
+                })
+            }
+
+            return tempData;
+        };
+
+        const typeFilter = (data) => {
+            let tempData = {};
+            for (let k in data) {
+                tempData[k] = data[k].filter((item) => {
+                    if (filter.key === 'all') {
+                        return item;
+                    }
+
+                    return item[filter.key] === 'true';
+                })
+            }
+
+            return tempData;
+        }
+
+        setRankData(typeFilter(nameFilter(defaultData)));
+
+    }, [filter, defaultData, setRankData]);
+
+
+    return (
+        <div className={styles.search}>
+            <Input
+                addonBefore="搜索："
+                placeholder="车型关键字"
+                style={{
+                    width: '200px'
+                }}
+                onChange={(e) => setFilter(() => (
+                    {
+                        ...filter,
+                        name: e.target.value
+                    }
+                ))}
+                allowClear
+            />
+            <Select
+                value={filter.key}
+                style={{
+                    paddingLeft: '10px',
+                    width: '125px'
+                }}
+                onChange={(val) => setFilter(() => (
+                    {
+                        ...filter,
+                        key: val
+                    }
+                ))}
+            >
+                <Option value="all">全部车型</Option>
+                <Option value="suv">只看SUV</Option>
+                <Option value="ev">只看电车</Option>
+            </Select>
+        </div>
+    )
+}
 
 const Description = (
     {

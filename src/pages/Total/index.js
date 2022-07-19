@@ -10,7 +10,7 @@ import styles from '../index.module.css';
 
 const Total = () => {
   // 获取数据
-  const { totalData } = useData();
+  const { total } = useData();
 
   // 每个表格的分页状态单独控制
   const [pagination, setPagination] = useState(false);
@@ -28,7 +28,7 @@ const Total = () => {
       />
       <Table
         styles={styles}
-        rankData={totalData}
+        rankData={total}
         title={<span>总榜</span>}
         pagination={pagination}
         mod={true}

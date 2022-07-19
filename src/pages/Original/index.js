@@ -10,7 +10,7 @@ import styles from '../index.module.css';
 
 const Original = () => {
   // 获取数据
-  const { rankData } = useData();
+  const { speed } = useData();
 
   // 每个表格的分页状态单独控制
   const [pagination, setPagination] = useState(false);
@@ -28,7 +28,7 @@ const Original = () => {
       />
       <Table
         styles={styles}
-        rankData={rankData}
+        rankData={speed}
         title={<span>原厂榜</span>}
         pagination={pagination}
       />

@@ -143,21 +143,21 @@ const Table = (
                 title="动力总成"
                 dataIndex="powertrain"
                 key="powertrain"
-                width="10%"
+                width="8%"
             />
             <Column
                 title="驱动"
                 dataIndex="drive"
                 key="drive"
                 align="center"
-                width="5%"
+                width="3%"
             />
             <ColumnGroup title={() => '轮胎'}>
                 <Column
                     title="前轮"
                     dataIndex="tyre_type_f"
                     key="tyre_type_f"
-                    width="6%"
+                    width="8%"
                     onCell={(res) => {
                         if (res.tyre_type_f === res.tyre_type_r) {
                             return {
@@ -170,7 +170,7 @@ const Table = (
                     title="后轮"
                     dataIndex="tyre_type_r"
                     key="tyre_type_r"
-                    width="6%"
+                    width="8%"
                     onCell={(res) => {
                         if (res.tyre_type_f === res.tyre_type_r) {
                             return {
@@ -184,7 +184,7 @@ const Table = (
                     dataIndex="tyre_width_f"
                     key="tyre_width_f"
                     align="center"
-                    width="5%"
+                    width="3%"
                     onCell={(res) => {
                         if (res.tyre_width_f === res.tyre_width_r) {
                             return {
@@ -198,7 +198,7 @@ const Table = (
                     dataIndex="tyre_width_r"
                     key="tyre_width_r"
                     align="center"
-                    width="5%"
+                    width="3%"
                     onCell={(res) => {
                         if (res.tyre_width_f === res.tyre_width_r) {
                             return {
