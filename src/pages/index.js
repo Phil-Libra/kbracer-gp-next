@@ -16,29 +16,64 @@ import 'antd/dist/antd.min.css';
 
 import styles from './index.module.css';
 
+
+// 处理两个榜单数据
+const speedData = dataFormat(speed, false);
+const speedDataMod = dataFormat(speed_mod, true);
+
+// 根据两个榜单数据生成总榜数据
+const totalSpeedData = speedData.concat(speedDataMod)
+    .sort((a, b) => a.speed * 100 - b.speed * 100)
+    .map((item, index) => (
+        {
+            ...item,
+            key: index + 1
+        }
+    ));
+
 const Home = () => {
-
-    const speedData = dataFormat(speed, false);
-    const speedDataMod = dataFormat(speed_mod, true);
-
-    // 根据两个榜单数据生成总榜数据
-    const totalSpeedData = useMemo(() => speedData.concat(speedDataMod)
-        .sort((a, b) => a.speed * 100 - b.speed * 100)
-        .map((item, index) => (
-            {
-                ...item,
-                key: index + 1
-            }
-        )), [speedData, speedDataMod]);
-
-    const defaultData = {
-        speed: speedData,
-        speedMod: speedDataMod,
-        total: totalSpeedData
-    };
+    // 合并为默认数据
+    const defaultData = useMemo(() => (
+        {
+            speed: speedData,
+            speedMod: speedDataMod,
+            total: totalSpeedData
+        }
+    ), []);
 
     // 展示数据源state
     const [rankData, setRankData] = useState(defaultData);
+
+    // 数据筛选条件
+    const [filter, setFilter] = useState({
+        name: '',
+        key: 'all'
+    });
+
+    useEffect(() => {
+        let tempData = {};
+
+        // 筛选数据函数
+        const dataFilter = (data) => {
+            for (let k in data) {
+                tempData[k] = data[k].filter((item) => {
+                    const reg = new RegExp(filter.name, 'i');
+                    return reg.test(item.car);
+                }).filter((item) => {
+                    if (filter.key === 'all') {
+                        return item;
+                    }
+
+                    return item[filter.key] === 'true';
+                });
+            }
+
+            return tempData;
+        };
+
+        setRankData(dataFilter(defaultData));
+
+    }, [defaultData, filter]);
 
     // 说明书显示状态
     const [descStatus, setDescStatus] = useState(false);
@@ -48,8 +83,8 @@ const Home = () => {
             <div className={styles.main}>
                 <Title >
                     <Search
-                        setRankData={setRankData}
-                        defaultData={defaultData}
+                        filter={filter}
+                        setFilter={setFilter}
                     />
                 </Title>
 
@@ -66,120 +101,13 @@ const Home = () => {
     );
 };
 
-const Title = (props) => (
-    <div className={styles.title}>
-        <div className={styles.header}>
-            <img src={logo} alt="logo" />
-            <div className={styles.desc}>
-                <h1>键盘车神教易车金港圈速榜</h1>
-                <p>本榜单只做技术展示，日常请使用<a href='https://phil-libra.github.io/kbracer-goldenport/'>原易车金港榜单</a></p>
-            </div>
-        </div>
-        {props.children}
-    </div>
-);
-
-const Footer = () => (
-    <div className={styles.footer}>
-        <div className={styles.left}>
-            <div>
-                关注教主：
-                <a href="https://space.bilibili.com/49576477">
-                    <img src={bilibili} alt="bilibili" />
-                    @键盘车神教
-                </a>
-                &nbsp;
-                &nbsp;
-                <a href="https://space.bilibili.com/1772592840">
-                    <img src={bilibili} alt="bilibili" />
-                    @易车圈速榜
-                </a>
-                &nbsp;
-                &nbsp;
-                <a href="https://www.weibo.com/u/5934299797">
-                    <img src={weibo} alt="weibo" />
-                    @键盘车神教教主
-                </a>
-            </div>
-
-            <div>
-                教主的锐思榜单：
-                <a href="https://kbracer.github.io/">
-                    <img src={logo} alt="kbracer" />
-                    键盘车神教锐思圈速榜
-                </a>
-            </div>
-        </div>
-
-        <div className={styles.right}>
-            <div>
-                本页面模仿教主原锐思榜单样式，基于
-                &nbsp;<a href="https://github.com/facebook/react/">React</a>&nbsp;
-                和
-                &nbsp;<a href="https://github.com/ant-design/ant-design/">Ant-Design</a>&nbsp;
-                实现。
-            </div>
-            <div>
-                作者：
-                <a href="https://github.com/Phil-Libra">Phil_Libra</a>
-                &nbsp;
-                源代码：
-                <a href="https://github.com/Phil-Libra/kbracer-gp-next">
-                    <img src={github} alt="github" />
-                    GitHub
-                </a>
-            </div>
-
-        </div>
-    </div>
-);
-
 const Search = (
     {
-        setRankData,
-        defaultData
+        filter,
+        setFilter
     }
 ) => {
     const { Option } = Select;
-
-    // 数据过滤条件
-    const [filter, setFilter] = useState({
-        name: '',
-        key: 'all'
-    });
-
-    useEffect(() => {
-        const nameFilter = (data) => {
-            let tempData = {};
-            for (let k in data) {
-                tempData[k] = data[k].filter((item) => {
-                    const reg = new RegExp(filter.name, 'i');
-                    return reg.test(item.car);
-                })
-            }
-
-            return tempData;
-        };
-
-        const typeFilter = (data) => {
-            let tempData = {};
-            for (let k in data) {
-                tempData[k] = data[k].filter((item) => {
-                    if (filter.key === 'all') {
-                        return item;
-                    }
-
-                    return item[filter.key] === 'true';
-                })
-            }
-
-            return tempData;
-        }
-
-        setRankData(typeFilter(nameFilter(defaultData)));
-
-    }, [filter, defaultData, setRankData]);
-
 
     return (
         <div className={styles.search}>
@@ -187,7 +115,7 @@ const Search = (
                 addonBefore="搜索："
                 placeholder="车型关键字"
                 style={{
-                    width: '200px'
+                    minWidth: '175px'
                 }}
                 onChange={(e) => setFilter(() => (
                     {
@@ -198,10 +126,10 @@ const Search = (
                 allowClear
             />
             <Select
-                value={filter.key}
+                defaultValue={'all'}
                 style={{
                     paddingLeft: '10px',
-                    width: '125px'
+                    minWidth: '115px'
                 }}
                 onChange={(val) => setFilter(() => (
                     {
@@ -279,6 +207,74 @@ const Description = (
             </div>
         </div>
     </>
+);
+
+const Title = (props) => (
+    <div className={styles.title}>
+        <div className={styles.header}>
+            <img src={logo} alt="logo" />
+            <div className={styles.desc}>
+                <h1>键盘车神教易车金港圈速榜</h1>
+                <p>本榜单只做技术展示，日常请使用<a href='https://phil-libra.github.io/kbracer-goldenport/'>原易车金港榜单</a></p>
+            </div>
+        </div>
+        {props.children}
+    </div>
+);
+
+const Footer = () => (
+    <div className={styles.footer}>
+        <div className={styles.left}>
+            <div>
+                关注教主：
+                <a href="https://space.bilibili.com/49576477">
+                    <img src={bilibili} alt="bilibili" />
+                    @键盘车神教
+                </a>
+                &nbsp;
+                &nbsp;
+                <a href="https://space.bilibili.com/1772592840">
+                    <img src={bilibili} alt="bilibili" />
+                    @易车圈速榜
+                </a>
+                &nbsp;
+                &nbsp;
+                <a href="https://www.weibo.com/u/5934299797">
+                    <img src={weibo} alt="weibo" />
+                    @键盘车神教教主
+                </a>
+            </div>
+
+            <div>
+                教主的锐思榜单：
+                <a href="https://kbracer.github.io/">
+                    <img src={logo} alt="kbracer" />
+                    键盘车神教锐思圈速榜
+                </a>
+            </div>
+        </div>
+
+        <div className={styles.right}>
+            <div>
+                本页面模仿教主原锐思榜单样式，基于
+                &nbsp;<a href="https://github.com/facebook/react/">React</a>&nbsp;
+                和
+                &nbsp;<a href="https://github.com/ant-design/ant-design/">Ant-Design</a>&nbsp;
+                实现。
+            </div>
+            <div>
+                作者：
+                <a href="https://github.com/Phil-Libra">Phil_Libra</a>
+                &nbsp;
+                源代码：
+                <a href="https://github.com/Phil-Libra/kbracer-gp-next">
+                    <img src={github} alt="github" />
+                    GitHub
+                </a>
+            </div>
+
+        </div>
+    </div>
 );
 
 export default Home;
