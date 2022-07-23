@@ -16,22 +16,21 @@ import 'antd/dist/antd.min.css';
 
 import styles from './index.module.css';
 
-
-// 处理两个榜单数据
-const speedData = dataFormat(speed, false);
-const speedDataMod = dataFormat(speed_mod, true);
-
-// 根据两个榜单数据生成总榜数据
-const totalSpeedData = speedData.concat(speedDataMod)
-    .sort((a, b) => a.speed * 100 - b.speed * 100)
-    .map((item, index) => (
-        {
-            ...item,
-            key: index + 1
-        }
-    ));
-
 const Home = () => {
+    // 处理两个榜单数据
+    const speedData = useMemo(() => dataFormat(speed, false), []);
+    const speedDataMod = useMemo(() => dataFormat(speed_mod, true), []);
+
+    // 根据两个榜单数据生成总榜数据
+    const totalSpeedData = useMemo(() => speedData.concat(speedDataMod)
+        .sort((a, b) => a.speed * 100 - b.speed * 100)
+        .map((item, index) => (
+            {
+                ...item,
+                key: index + 1
+            }
+        )), [speedData, speedDataMod]);
+
     // 合并为默认数据
     const defaultData = useMemo(() => (
         {
@@ -39,7 +38,7 @@ const Home = () => {
             speedMod: speedDataMod,
             total: totalSpeedData
         }
-    ), []);
+    ), [speedData, speedDataMod, totalSpeedData]);
 
     // 展示数据源state
     const [rankData, setRankData] = useState(defaultData);
